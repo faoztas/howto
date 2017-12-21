@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    {% load crispy_forms_tags %}
+        <title>{{ title }}</title>
+        {% load staticfiles %}
+        {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src={% static 'js/jquery-3.2.0.min.js' %}></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> -->
+        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.js"></script> -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href={% static 'sem/semantic.min.css' %} >
+    <link rel="stylesheet" href={% static 'sem/components/rail.min.css' %} >
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="{% static 'sem/open-sans.css' %}" rel="stylesheet">
+    <!-- CSS -->
+    <script src={% static 'sem/components/sidebar.min.js' %} type="text/javascript"></script>
+    <script src={% static 'sem/components/search.min.js' %} type="text/javascript"></script>
+    <script src={% static 'sem/components/transition.min.js' %} type="text/javascript"></script>
+    <script src={% static 'sem/components/dropdown.min.js' %} type="text/javascript"></script>
+    <script src={% static 'sem/components/popup.min.js' %} type="text/javascript"></script>
+    <script src={% static 'sem/components/sticky.min.js' %} type="text/javascript"></script>
+    <script src={% static 'sem/components/modal.min.js' %} type="text/javascript"></script>
+        <script src={% static 'sem/components/dimmer.min.js' %} type="text/javascript"></script>
+        <script src={% static 'sem/components/checkbox.min.js' %} type="text/javascript"></script>
+        <script src={% static 'sem/components/tab.min.js' %} type="text/javascript"></script>
+        <link rel="stylesheet" href={% static 'sem/ace.min.css' %}>
+    <script src={% static 'js/highlight.min.js' %}></script>
+    <style>
+        @media only screen and (max-width: 1026px) {
+            #sidemenu {
+                position: initial !important;
+                width: 98%;
+            }
+        }
+
+        body{
+          background-color: #f4f4f4;
+
+            /*background-image:url({% static 'img/paper-background-7.jpg' %});*/
+        }
+
+        label
+        {
+          font-weight: 800 !important;
+        }
+
+        p{
+          font-weight: 400;
+        }
+
+        h3{
+          font-family: 'Open Sans', sans-serif;
+          font-size: 1.6em;
+        }
+
+        *{
+          font-family:'Open Sans', sans-serif;
+          text-shadow: rgba(0,0,0,.01) 0 0 1px;
+          -webkit-font-smoothing: antialiased;
+        }
+
+
+        #id_comment {
+                     resize: none;
+                     border-right-width: 0px;
+                     border-radius: 0px;
+        }
+
+        #add-emoji
+        {
+            border-left-width: 0px;
+            border-left: 0px;
+            border-right-width: 0px;
+            border-radius: 0px;
+        }
+
+
+
+        img{
+            width:80%;
+            height: auto;
+        }
+
+        img:hover{
+            cursor: pointer;
+        }
+
+        li{
+            text-decoration:none;
+        }
+
+        .scrollbar
+        {
+          margin-left: 30px;
+          float: left;
+          height: 300px;
+          width: 65px;
+          background: #F5F5F5;
+          overflow-y: scroll;
+          margin-bottom: 25px;
+        }
+
+        #style-1::-webkit-scrollbar
+        {
+          width: 3px;
+          background-color: none;
+        }
+
+        #style-1::-webkit-scrollbar-thumb
+        {
+          border-radius: 10px;
+          -webkit-box-shadow: inset 0 0 6px #ba2e23;
+          background-color: #ba2e23;
+        }
+
+
+        code::-webkit-scrollbar
+        {
+          width: 3px;
+          height: 3px;
+          background-color: #F2F2F2;
+        }
+
+        code::-webkit-scrollbar-thumb
+        {
+          border-radius: 3px;
+          -webkit-box-shadow: inset 0 0 6px #ba2e23;
+          background-color: #ba2e23;
+        }
+
+        code{
+          border-radius: 3px;
+          border: 1px solid rgba(238, 148, 84, 0.37) !important;
+          background-color: #f4f4d6 !important;
+        }
+
+        .mylabel{
+          margin-top: 1px !important;
+          background-color: #F44336 !important;
+          opacity: 0.7 !important;
+          color: white !important;
+        }
+        .mylabel:hover{
+          opacity: 0.97 !important;
+          transition: 0.15s ease-in !important;
+        }
+
+        blockquote {
+          background: #F5F5DC;
+          border-left: 10px solid #F44336;
+          margin: 1.5em 10px;
+          padding: 0.5em 3em;
+          quotes: "\201C""\201D""\2018""\2019";
+        }
+        blockquote:before {
+          color: #F44336;
+          content: open-quote;
+          font-size: 4em;
+          line-height: 0.1em;
+          margin-right: 0.25em;
+          vertical-align: -0.4em;
+        }
+
+        blockquote:after {
+          color: #F44336;
+          content: close-quote;
+          font-size: 4em;
+          line-height: 0.1em;
+          margin-left: 0.25em;
+          vertical-align: -0.5em;
+        }
+
+        blockquote p {
+          display: inline;
+        }
+
+        .headbut{
+          color:#F44336;
+        }
+        .headbut:hover{
+          color:#cf3327;
+        }
+
+
+        @-webkit-keyframes upvoted{
+          0%   {top: 0px; opacity: 1;}
+          5%   {top: 0px; font-size: 2em; opacity: 1; color: black;}
+          50% { top:-20px; opacity: 0; }
+          51% { top:20px; opacity: 0; }
+          95% {top: 0px; opacity: 1; color: #2185D0;}
+          100% {font-size: 2.7em;}
+        }
+
+        @keyframes upvoted{
+              0%   {top: 0px; opacity: 1;}
+          30%   {top: 0px; font-size: 2em; opacity: 1; color: black;}
+          50% { top:-20px; opacity: 0; }
+          51% { top:20px; opacity: 0; }
+          70% {top: 0px; opacity: 1; }
+          100% {font-size: 2.7em; color: #2185D0;}
+
+        }
+
+        .upnow{
+          position: relative;
+          -webkit-animation: upvoted 1.2s steps(45);
+          animation: upvoted 1.2s steps(45);
+        }
+
+        /*@keyframes liked{
+          0%{ color:black; }
+          15%{ transform: scale(1.1); color: red; opacity: 0.15; }
+          30%{ transform: scale(1.2); color: red; opacity: 0.3; }
+          50%{ transform: scale(1.4); color: red; opacity: 0.5; }
+          100%{ transform: scale(1); color: red; opacity: 1; }
+        }
+
+        @-webkit-keyframes liked{
+          0%{ color:black; }
+          15%{ transform: scale(1.1); color: red; opacity: 0.15; }
+          30%{ transform: scale(1.2); color: red; opacity: 0.3; }
+          50%{ transform: scale(1.4); color: red; opacity: 0.5; }
+          100%{ transform: scale(1); color: red; opacity: 1; }
+        }
+
+        .liked{
+          animation: liked 0.3s;
+          color: red;
+          -webkit-animation:liked 0.3s;
+        }*/
+
+        @keyframes heart-burst {
+         from {background-position:left;}
+         to { background-position:right;}
+        }
+
+        .like {
+         cursor: pointer;
+         margin-top: -30px;
+         margin-bottom: -30px;
+         margin-right: -25px;
+         padding: 0px;
+         height: 65px;
+         width: 65px;
+         background-image:url("{% static 'img/heart.png' %}");
+         background-position: left;
+         background-repeat:no-repeat;
+         background-size:2900%;
+        }
+
+        .liked{
+          background-position: right;
+        }
+
+        .is_animating {
+          background-position: right;
+          animation: heart-burst .8s steps(28) 1;
+        }
+
+        .metadata{
+          color:rgba(0,0,0,.5);
+        }
+
+        .comment-form-class:focus{
+          outline: none !important;
+          border-color: rgba(34,36,38,.15) !important;
+        }
+    </style>
+</head>
+
+
+<body class="body" id="style-1">
+
+
+{% if request.user.is_authenticated %}
+<div class="pusher" >
+    <!-- Site content !-->
+  <div class="sixteen wide column">
+
+    <div class="ui inverted borderless fixed pointing menu" style="background-color: #F44336;opacity: 0.95;width: 100%;">
+      <div class="left menu">
+        <a href="/" class="item" style="padding-top: 2px; padding-bottom: 2px; margin-top: 0px; margin-bottom: 0px;margin-right: 0px">
+          <link href="https://fonts.googleapis.com/css?family=Raleway:300i" rel="stylesheet"><div style="font-family: 'Raleway', sans-serif;font-size: 48px; color:white; font-weight:normal;">howto?</div>
+        </a>
+
+        <div class="ui dropdown item" id="dropdown">
+          <i class="chevron down icon"></i>
+          <div class="menu">
+            <a href="/post/" class="item"><i class="edit icon" ></i> Post</a>
+            <a href="/" class="item"><i class="browser icon" ></i> feed</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="center menu" style="width: 35%;">
+        <div class="item" style="width: 100%; ">
+          <div class="ui fluid inverted transparent icon input">
+            <input type="text" placeholder="Ask anything..." style="width: 100%; ">
+            <i class="inverted search link icon" ></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="right menu">
+        <a class="teal item" id='varta_chat' href="#" >
+          {% csrf_token %}
+          <i class="record icon"></i><!-- Varta -->
+        </a>
+        <a class="teal item" >
+            <i class="alarm icon"></i>
+            <!-- <div class="ui teal left pointing label">
+
+            </div> -->
+        </a>
+          <!-- <a class="item">
+               <div class="results"></div>
+          </a> -->
+        <a class="item">
+          <i class="send icon"></i>
+        </a>
+
+        <div class="ui dropdown item" >
+          <i class="setting icon"></i>
+          <div class="menu">
+            <a class="item" href="{% url 'fillup' %}"><i class="edit icon" ></i> Profili Güncelle</a>
+            <a class="item" href="/accounts/password/change/"><i class="settings icon" ></i>Şifre Değiştir</a>
+            <a class="item" href="{% url 'logout' %}"><i class="power off icon" ></i>Çıkış Yap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <br><br>
+<br>
+  <div class="ui stackable grid">
+    <div class="three wide column">
+      <div class="ui vertical menu" id="sidemenu" style="margin-left: 1.7%; position: fixed;">
+        <div class="ui fluid card">
+          <div class=" item">
+            <!-- <div class="ui input"><form class="search-form" role="search">
+                <div class="ui loading search">
+                    <div style="width:30vh">
+                        {% csrf_token %}
+                        <input type="text" class="form-control" id="profile-search" name="search" placeholder="Find Friends...." list="profile-results">
+                        <div class="results" id="profile-results" >
+                        </div>
+                    </div>
+                </div>
+            </form></div> -->
+            <div class="ui fluid search" id="profile-search-div">
+              <div class="ui transparent icon input" style="width: 100%;">
+                {% csrf_token %}
+                <input class="prompt" id="profile-search" type="text" placeholder="Find People..." style="border-radius: 0px;">
+                <i class="search icon" ></i>
+              </div>
+              <div class="results" id="profile-results" >
+              </div>
+            </div>
+          </div>
+
+          <div class="image">
+            {% if user.person.display_pic %}
+              <img src="{{user.person.display_pic.url}}" style="display: inline;"/>
+            {% else %}
+              <img src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
+            {% endif %}
+          </div>
+
+          <div class="ui content">
+            <a class="header" href="{% url 'profile_view' request.user.id %}">
+              {% if user.first_name %}
+              {{ user.first_name }}&nbsp;{{ user.last_name }}
+              {% else %}
+              {{ user.username }}
+              {% endif %}
+            </a>
+
+            <div class="meta">
+              <span class="date">{{ user.date_joined }}Tarihinde Katıldı</span>
+            </div>
+
+
+          </div>
+
+          <div class="extra content">
+            <a>
+              <i class="user icon"></i>
+              {{ user.person.followed_by.all.count }}&nbsp;follower{% if user.person.followed_by.all.count > 1 %}s{% endif %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seven wide column" >
+      <div class="ui segments" style="border-left: 3px solid #F44336; border-right: 3px solid #F44336;">
+        <div class="ui segment" style="padding: 0px; text-align: center;background-color: #F5F5DC;">
+          
+        </div>
+        <div class="ui segment grid">
+          <div class="sixteen wide column">
+            <div class="ui vertical divider">veya</div>
+            <div class="ui grid">
+              <div class="eight wide stretched column" >
+                <a class="headbut" href="{% url 'create_question' %}">
+                  <h2 style="text-align: center;">Sorun mu var?</h2>
+                </a>
+              </div>
+              <div class="eight wide stretched column">
+                <a class="headbut" href="{% url 'create_post' %}">
+                  <h2 style="text-align: center;">Bir yazı oluştur!</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="ui modal" style="padding: 0px;">
+        <i class="close icon"></i>
+      </div>
+        <!-- <div class="ui top attached segment">
+           don't act like its a bad thing to fall in love with me......
+        </div>
+        <div class="ui transparent bottom attached icon input segment">
+          <i class="edit icon"></i>
+          <input type="text" name="">
+        </div> -->
+
+{% endif %}
+
+      {% block bass %}
+      {% endblock %}
+      {% block body %}
+      {% endblock %}
+
+{% if request.user.is_authenticated %}
+      <div id="context">
+
+      </div>
+    </div>
+
+
+
+    <!--<div class="three wide column" style="">
+
+      <a class = "ui top attached button" style="background-color: #F44336;color: white;" href="{% url 'report' %}">Report Item Lost/Found</a>
+
+      <div id="style-1" style="max-height:280px;overflow-y: scroll;">
+
+        <table class="ui selectable single line compact fixed table">
+          <thead>
+          <tr class = "ui yellow top attched segment""><th colspan="2" ><center><b> LOST</b></center> </th></tr>
+            <tr>
+              <th style="background-color: #F5F5DC;padding: 7px;" colspan="2">Reported by</th>
+              <th style="background-color: #F5F5DC;padding: 7px;" colspan="1"><b>LOST</b></th>
+            </tr>
+          </thead>
+
+          <tbody>
+          {% load post_tags %}
+          {% for item in litem %}
+            <tr>
+              <td colspan="2">{% get_user_tag item.reported_by user %}</td>
+              <td colspan="1" href="{% url 'lost_view' item.id %}"><a style="color: #111" href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div id="style-1" style="max-height:280px;overflow-y: scroll; margin-top: 5px;">
+
+        <table class="ui selectable single line compact fixed table" >
+          <thead>
+          <tr class = "ui inverted yellow top attched segment""><th colspan="2"><center><b> FOUND</b></center> </th></tr>
+            <tr>
+              <th style="background-color: #F5F5DC;padding: 7px;" colspan="2">Reported by</th>
+              <th style="background-color: #F5F5DC;padding: 7px;" colspan="1"><b>FOUND</b></th>
+            </tr>
+          </thead>
+
+          <tbody>
+          {% for item in fitem %}
+            <tr>
+              <td colspan="2">{% get_user_tag item.reported_by user %}</td>
+              <td colspan="1" href="{% url 'lost_view' item.id %}"><a style="color: #111" href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="three wide column">
+      <div class="ui rail" style="">
+        <div class="ui sticky" style="background-color: white; height:100%; top: 7%; z-index: 0;">
+          <div class="ui dividing container">
+            <h4 class="ui centered header">Chat division</h4>
+            <div class="ui container">
+              YO
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</div>
+{% endif %}
+</body>
+
+<script type="text/javascript">
+  document.load(function(){
+    $('.ui.modal').modal('show');
+  });
+</script>
+
+    <script type="text/javascript">
+$('#sidenav').click(function(event){
+    $('.ui.sidebar')
+  .sidebar('toggle')
+;
+});
+
+$('#modal').click(function(event){
+$('.ui.modal')
+  .modal('show')
+;
+});
+        $('.ui.sticky')
+  .sticky({
+    context: '#context'
+  })
+;
+    </script>
+
+<!-- <script type="text/javascript">
+    $('.post-edit').click(function(event){
+        var element = $(this);
+        $('.ui.modal').modal('show');
+        $.ajax({
+               type: "POST",
+               url: "/post/update/"+element.attr('data')+"/",
+               data: { 'post_id': element.attr('data'),'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      if(response['data'])
+                      {
+                      $('.ui.modal').html(response['html']);
+                      console.log($('.ui.modal').html());
+                      // console.log('follow-'+element.attr('data'));
+                      // document.getElementById('follow-'+element.attr('data')).style.color = 'red';
+
+                        }
+                        else
+                        {
+                            $('.ui.modal').html("<h3>Something went wrong</h3>");
+                            // console.log('follow-'+element.attr('data'));
+                            // document.getElementById('follow-'+element.attr('data')).style.color = 'black';
+
+                        }
+
+                },
+                error: function(rs, e) {
+                       $('.ui.modal').html("<h3>Request couldn't be parsed</h3>");
+                },
+            });
+    });
+</script> -->
+
+
+    <script type="text/javascript">
+      $(function(){
+        $('#profile-search').keyup(function(){
+          document.getElementById('profile-search-div').classList.add('loading');
+          $.ajax({
+            type :'POST',
+            url :'{% url 'profile_search' %}',
+            data : {
+              'search_q':$('#profile-search').val(),
+              'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            dataType : "json",
+            success: function(data){
+              document.getElementById('profile-search-div').classList.remove('loading');
+                if(data['data'])
+                {
+                $('#profile-results').show();
+                }
+                else{$('#profile-results').hide();}
+              $('#profile-results').html(data['html']);
+
+
+            },
+            error: function(rs, e){
+              console.log('Something went wrong!!');
+              document.getElementById('profile-search-div').classList.add('loading');
+            },
+
+
+          })
+
+        })
+
+      })
+
+    </script>
+
+<script type="text/javascript">
+$('.profiles').click(function(){
+    var element = $(this);
+      $.ajax({
+               type: "POST",
+               url: "{% url 'follow_request'%}",
+               data: {'user_id': $(this).attr('data'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      if(response.message == "followed")
+                      {
+                      element.html("<div class='ui purple labeled icon button'><i class='user icon'></i>unfollow</div>");
+                      // console.log('follow-'+element.attr('data'));
+                      // document.getElementById('follow-'+element.attr('data')).style.color = 'red';
+
+                        }
+                        else
+                        {
+                            element.html("<div class='ui basic purple labeled icon button'><i class='add user icon'></i>follow</div>");
+                            // console.log('follow-'+element.attr('data'));
+                            // document.getElementById('follow-'+element.attr('data')).style.color = 'black';
+
+                        }
+
+                },
+                error: function(rs, e) {
+                       alert("Something went wrong!")//rs.responseText);
+                }
+          });
+    })
+
+    </script>
+    <script type="text/javascript">
+$('.ui.image.label')
+  .popup({
+    inline     : true,
+    hoverable  : true,
+    position   : 'bottom left',
+    delay: {
+      show: 300,
+      hide: 500
+    }
+  })
+;
+
+$('.ui.transparent.label')
+  .popup({
+    inline     : true,
+    hoverable  : true,
+    position   : 'bottom left',
+    delay: {
+      show: 300,
+      hide: 500
+    }
+  })
+;
+
+$('.ui.emoji.label')
+  .popup({
+    on         : 'click',
+    inline     : true,
+    hoverable  : true,
+    position   : 'bottom left',
+    delay: {
+      show: 300,
+      hide: 500
+    }
+  })
+;
+
+$('.ui.emoji.button').click(function(event){
+  var emoji = event.currentTarget;
+  var element = event.currentTarget.parentElement.parentElement;
+
+  var elem = element.getElementsByClassName('comment-form-class').comment;
+  // console.log(elem.value);
+  if(elem)
+  {
+  var str=elem.value+emoji.innerText;
+  elem.value=str;
+}
+else
+{
+  var elem = element.getElementsByClassName('edit-comment').comment;
+  // console.log(elem.value);
+  var str=elem.value+emoji.innerText;
+  elem.value=str;
+}
+});
+</script>
+<script type="text/javascript">
+
+
+$('#style-1').hover(function(){
+  $(this).style.overflow-y = 'scroll';
+  console.log('sdfds');
+}, function(){
+  $(this).style.overflow-y = 'hidden';
+});
+
+// $('.ui.transparent.icon.input')
+//   .click(function(){
+//     //$('.body').dimmer('show');
+//     //$('.ui.black.fluid.card').dimmer('show');
+//     $('.ui.search').dimmer("add content('.ui.search')");
+
+//   })
+// ;
+
+
+
+    $('.dropdown')
+  .dropdown({
+    // you can use any ui transition
+    transition: 'slide'
+  })
+;
+</script>
+<script type="text/javascript">
+  $('img').click(function(event){
+    if(event.currentTarget.id!='logo-asq' && event.currentTarget.id!='avatar-image')
+    {
+    var modal = $('.ui.modal');
+    modal.html("<i class='close icon' id='modal-close-button'></i><center style='padding:0px;'><img class='ui big image' style='padding:0px;' src='"+event.currentTarget.src+"'/></center>");
+    modal.modal('show');
+  }
+  });
+  $('#modal-close-button').click(function(){
+      console.log('grabbed');
+      $('.ui.modal').html("<i class='close icon'></i>");
+  });
+</script>
+<script type="text/javascript">
+  $('#varta_chat').click(function(event){
+    var element = $(this);
+      $.ajax({
+               type: "POST",
+               url: "{% url 'varta_chat'%}",
+               data: {'user_id': {{request.user.id}},'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      $('.ui.modal').html("<i class='close icon'></i>"+response.html);
+                      $('.ui.modal').modal('show');
+                },
+                error: function(rs, e) {
+                       alert("Something went wrong!")//rs.responseText);
+                }
+          });
+  },);
+</script>
+
+
+<script type="text/javascript">
+  // $('.headbut').click(function(event){
+  //   event.preventDefault();
+  //   var element = $(this);
+  //   $.ajax({
+  //           type: "GET",
+  //           url: element.attr('href'),
+  //           data: {},
+  //           success: function(response){
+  //               $('.ui.modal').html("<i class='close icon'></i>"+response);
+  //               $('.ui.modal').modal('show');
+  //           },
+  //           error: function(response, error){
+  //               alert("Response:"+response+"\nError:"+error);
+  //           }
+  //   },);
+  // });
+</script>
+
+
+<!-- for code and pre highlight -->
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/javascript">
+$('.post').click(function(){
+    var element = $(this);
+      $.ajax({
+               type: "POST",
+               url: "{% url 'upvote_post'%}",
+               data: {'post_id': $(this).attr('data'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      if(response.message == "Upvoted")
+                      {
+                      element.html("<i class='large blue chevron up icon upnow' style='font-size: 2.7em;''></i><div class='ui small basic blue left pointing label'>"+response.upvotes+"</div>");
+                      // document.getElementById(element.attr('data')).style.color = 'red';
+                        }
+                        else
+                        {
+                      element.html("<i class='large grey chevron up icon' style='font-size: 2.7em;''></i><div class='ui small basic grey left pointing label'>"+response.upvotes+"</div>");
+                            // document.getElementById(element.attr('data')).style.color = 'black';
+                        }
+
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          });
+    })
+
+$('.post-delete').click(function(){
+    var element = $(this);
+    var id = $(this).attr('data');
+    if(confirm("Are you sure you want to delete this Post?")){
+      $.ajax({
+               type: "POST",
+               url: "{% url 'delete_post'%}",
+               data: {'post_id': $(this).attr('data'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      if(response.message == "Deleted")
+                      {
+                        $('.mypost-'+id).slideToggle()
+                        }
+                        else if(resonse.message == 'Unauthenticated')
+                        {
+                            alert('You are not allowed to do this!!');
+                        }
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          });
+    }
+    })
+
+    </script>
+
+<script type="text/javascript">
+
+$('.answer').click(function(){
+    var element = $(this);
+      $.ajax({
+               type: "POST",
+               url: "{% url 'upvote_answer'%}",
+               data: {'answer_id': $(this).attr('data'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      if(response.message == "Upvoted")
+                      {
+                      element.html("<i class='large blue chevron up icon upnow' style='font-size: 2.7em;''></i><div class='ui small basic blue left pointing label'>"+response.upvotes+"</div>");
+                      // document.getElementById(element.attr('data')).style.color = 'red';
+                        }
+                        else
+                        {
+                      element.html("<i class='large grey chevron up icon' style='font-size: 2.7em;''></i><div class='ui small basic grey left pointing label'>"+response.upvotes+"</div>");
+                            // document.getElementById(element.attr('data')).style.color = 'black';
+                        }
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          });
+    })
+
+$('.answer-delete').click(function(){
+    var element = $(this);
+    var id = $(this).attr('data');
+    if(confirm("Are you sure you want to delete this Post?")){
+      $.ajax({
+               type: "POST",
+               url: "{% url 'delete_answer'%}",
+               data: {'answer_id': $(this).attr('data'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      if(response.message == "Deleted")
+                      {
+                        $('.myanswer-'+id).slideToggle()
+                        window.location = "/";
+                        }
+                        else if(resonse.message == 'Unauthenticated')
+                        {
+                            alert('You are not allowed to do this!!');
+                        }
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          });
+    }
+    })
+
+    </script>
+    <script type="text/javascript">
+
+$('.question-delete').click(function(){
+    var element = $(this);
+    var id = $(this).attr('data');
+    if(confirm("Are you sure you want to delete this Question?")){
+      $.ajax({
+               type: "POST",
+               url: "{% url 'delete_question'%}",
+               data: {'question_id': $(this).attr('data'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      if(response.message == "Deleted")
+                      {
+                        window.location.replace("/post/");
+                        }
+                        else if(resonse.message == 'Unauthenticated')
+                        {
+                            alert('You are not allowed to do this!!');
+                        }
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          });
+    }
+    })
+
+
+</script>
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    // ADD COMMENT //
+    $('.ui.reply.form').submit(function(event){
+        event.preventDefault();
+        var form = $(this);
+        var data =  new FormData(form.get(0));
+        $.ajax({
+            url: $('.ui.reply.form').attr('action'),
+            type: "POST",
+            data: data,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(json) {
+                if (json['success'] == 0) {
+                  errors = ""
+                  for (var err in json['error']){
+                    errors += "" + err + ": " + json['error'][err] + "\n"
+                  }
+                  alert(errors)
+                }
+                else {
+                  var oid = json['oid'];
+                    var comment_count = document.getElementById('comments-count-'+json['oid']);
+                    if (parseInt(comment_count.innerHTML) == 0) {
+                        comment_count.innerHTML = parseInt(comment_count.innerHTML) + 1 + " Comment";
+                    } else {
+                        comment_count.innerHTML = parseInt(comment_count.innerHTML) + 1 + " Comments";
+                    }
+                    html = "<div id='comment-div-" + json['id'] + "' style='display:none;'>" +json['html'] +"</div>"
+                  $('.comments-'+json['oid']).append(html);
+                  $('#comment-div-' + json['id']).slideToggle();
+                  // console.log('comments-'+json['oid']);
+                  // var app = document.getElementById('comments-'+json['oid']);
+                  // app.innerHTML=html;
+                  $('textarea#id_comment').val("");
+                    $('#no-comments').hide()
+                }
+
+            },
+            error: function(response) {
+              alert("error")
+            }
+         });
+    });
+
+    // DELETE COMMENT //
+    $('.comments-wrapper').on('click', '.comment-delete-btn', function(event) {
+        event.preventDefault();
+        var id = $(this).attr('data-id');
+        if(confirm("Are you sure you want to delete this comment?")){
+              $.ajax({
+              type: "GET",
+              url: $('.comment-delete-form').attr('action'),
+              data: {'id': id, 'csrfmiddlewaretoken' : $("#csrf").attr('value')},
+              success: function(data){
+                    if(data['success'] == 1) {
+                          $('#comment-div-' + id).slideToggle();
+                          if (data['count'] == 0) {
+                                $('#no-comments').show();
+                                var comment_count = document.getElementById('comments-count-'+data['oid']);
+                                $('#comments-count-'+data['oid']).hide()
+                          }
+                          else {
+                                var comment_count = document.getElementById('comments-count-'+data['oid']);
+                                if (parseInt(comment_count.innerHTML) == 2) {
+                                    comment_count.innerHTML = parseInt(comment_count.innerHTML) - 1 + " Comment";
+                                } else {
+                                    comment_count.innerHTML = parseInt(comment_count.innerHTML) - 1 + " Comments";
+                                }
+                                $('#no-comments').hide()
+                                $('#no-comments').hide()
+                          }
+                    }
+                    else {
+                          alert("You don't have permission to delete this comment")
+                    }
+              }
+          });
+        }
+    });
+
+    // COMMENT EDIT //
+    $('.comments-wrapper').on('click', '.comment-edit-class', function(event){
+
+        var id = $(this).attr('data-id');
+        $('#comment-edit-' + id).slideToggle();
+        $('#comment-' + id).slideToggle();
+    });
+
+    $('.comments-wrapper').on('submit', '.edit-form', function(event){
+    event.preventDefault();
+    var form = $(this);
+    var data = form.serialize();
+    var id = $(this).attr('data-id');
+    var comment = document.getElementById('comment-'+id);
+    var error = document.getElementById('edit-form-errors');
+    $.ajax({
+            type: "POST",
+            url: form.attr('action'),
+            data: data,
+
+            success: function(data){
+                json = JSON.parse(data);
+                if(json.success == 1) {
+                    comment.innerHTML = $('#input-comment-' + id).val();
+                    $('#comment-edit-' + id).slideToggle();
+                    $('#comment-' + id).slideToggle();
+                } else if(json.success == 0){
+                     errors = ""
+                  for (var err in json.error){
+                    errors += "" + json.error[err] + "\n";
+                }
+                error.innerHTML = errors;
+            }
+            },
+            dataType: 'html'
+        });
+    });
+
+
+    // LIKE UNLIKE COMMENT //
+    $('.comments-wrapper').on('click', '.like-comment-btn', function() {
+        var id = $(this).attr('data-id');
+        if($(this).attr('data-like') == 'like') {
+          $('#like-btn-' + id).attr('data-like', 'liked');
+                        $('#like-btn-' + id).html("<div class='like is_animating'></div>");
+
+            $.ajax({
+                type: "GET",
+                url: '/comments/like',
+                data: {'comment_id': id},
+                success: function(data){
+                    if(data['success'] == 1) {
+                        $('#likes-count-' + id).text(data['likes_count']);
+                    } else{
+                       $('#like-btn-' + id).attr('data-like', 'like');
+                        $('#like-btn-' + id).html("<div class='like'></div>");
+                        $('#likes-count-' + id).text(data['likes_count']);
+                        // alert(data['error']);
+                    }
+                }
+            });
+        } else {
+           $('#like-btn-' + id).attr('data-like', 'like');
+                        $('#like-btn-' + id).html("<div class='like'></div>");
+
+            $.ajax({
+                type: "GET",
+                url: '/comments/unlike',
+                data: {'comment_id': id},
+                success: function(data){
+                    if(data['success'] == 1) {
+                       $('#likes-count-' + id).text(data['likes_count']);
+                    } else{
+                        // alert(data['error']);
+                    }
+                }
+            });
+        }
+    });
+
+})</script>
+
+<script type="text/javascript">
+  $('.ui.dropdown')
+  .dropdown()
+;
+</script>
+
+</body>
+</html>

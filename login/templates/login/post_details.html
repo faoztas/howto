@@ -1,0 +1,18 @@
+{% extends 'login/semantic.html' %}
+{% block body %}
+  {% load static %}
+  {% load comments_tags %}
+  {% load dractags %}
+  {% load post_tags %}
+  
+
+	{% for i in post %}
+	   {% get_post i user %}
+	{% endfor %}
+
+
+
+
+
+
+{% endblock %}

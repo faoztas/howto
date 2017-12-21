@@ -1,0 +1,33 @@
+{% extends 'login/semantic.html' %}
+{% block body %}
+	{% load static %}
+	{% load dractags %}
+	{% load post_tags %}
+	{% load comments_tags %}
+	{% for entity in feed %}
+
+		{% if entity.question.question %}
+      <div class="ui top attached segment" style="background-color: #F5F5DC;">
+  			<center>
+          <a href="{% url 'view_question' entity.question.id %}"><strong><h3 style="color: black;">{{entity.question.question}}</h3></strong></a><br>
+  			 <p> {{ entity.question.details }} </p>
+  			</center>
+      </div>
+			{% load comments_tags %}
+			{% load post_tags %}
+			{% get_answer entity user %}
+
+		{% elif entity.content %}
+			{% get_post entity user %}
+		{% elif entity.question %}
+			{% question_feed entity user %}
+		{% endif %}
+	{% endfor %}
+
+
+
+{% endblock %}
+
+
+
+

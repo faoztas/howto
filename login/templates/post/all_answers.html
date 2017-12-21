@@ -1,0 +1,10 @@
+{% load post_tags %}
+{% if size > 0 %}
+	{% for ans in answers %}
+		<div  class="answer-{{ ans.id }}">
+			{% get_answer ans user %}
+		</div>
+	{% endfor %}
+{% else %}
+
+{% endif %}

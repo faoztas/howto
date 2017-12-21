@@ -1,0 +1,36 @@
+{% extends 'login/semantic.html' %}
+{% block body %}
+<div class="ui segments">
+<!-- <i class="close icon"></i> -->
+  <div class="ui segment" style="background-color: #F5F5DC;">
+    <h2 class="ui centered header">{{ title }}</h2>
+  </div>
+  <div class="ui segment">
+
+    {% load crispy_forms_tags %}
+    {% load staticfiles %}
+    {{ form.media }}
+    <form class="ui form" action="" method="POST" enctype='multipart/form-data'  style="color:black;">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="actions">
+          <button class="ui positive right floated labeled icon button" type="submit" name="submit">
+            Submit
+            <i class="checkmark icon"></i>
+          </button>
+          <br><br>
+        </div>
+    </form>
+</div>
+</div>
+<script type="text/javascript">
+  $(".js-example-tags").select2({
+  tags: false;
+});
+</script>
+{% endblock %}
+
+
+
+
