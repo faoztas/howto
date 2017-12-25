@@ -41,10 +41,9 @@ class Notification(models.Model):
 
     def __str__(self):
         timedlta = timesince(self.timestamp, timezone.now())
-        gen = self.generator.User.username
         fields = {
             'recipient': self.recipient,
-            'generator': gen,
+            'generator': self.generator.username if self.generator else None,
             'action_obj': self.action_obj,
             'target': self.target,
             'action_verb': self.action_verb,
@@ -54,15 +53,15 @@ class Notification(models.Model):
         if self.generator:
             if self.action_obj:
                 if self.target:
-                    return u'%(generator)s %(action_verb)s %(target)s %(action_obj)s %(timesince)s ago' % fields
-                return u'%(generator)s %(action_verb)s %(action_obj)s %(timesince)s ago' % fields
-            return u'%(generator)s %(action_verb)s %(timesince)s ago' % fields
+                    return '%(generator)s %(action_verb)s %(target)s %(action_obj)s %(timesince)s ago' % fields
+                return '%(generator)s %(action_verb)s %(action_obj)s %(timesince)s ago' % fields
+            return '%(generator)s %(action_verb)s %(timesince)s ago' % fields
 
         if self.action_obj:
             if self.target:
-                return u'%(action_verb)s %(target)s %(action_obj)s %(timesince)s ago' % fields
-            return u'%(action_verb)s %(action_obj)s %(timesince)s ago' % fields
-            return u'%(action_verb)s %(timesince)s ago' % fields
+                return '%(action_verb)s %(target)s %(action_obj)s %(timesince)s ago' % fields
+            return '%(action_verb)s %(action_obj)s %(timesince)s ago' % fields
+            return '%(action_verb)s %(timesince)s ago' % fields
 
     def __unicode__(self):
         return self.__str__(self)

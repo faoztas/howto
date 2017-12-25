@@ -67,7 +67,7 @@ def general_info(request):
 	context = {'title': 'Edit Profile'}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return redirect('/')
 
@@ -131,7 +131,7 @@ def item_create(request):
 	context = {'form':form , 'title': 'Report Lost/Found'}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/login.html', context)
 
@@ -144,7 +144,7 @@ def lost_view(request, id=None):
 	context = {'item':item , 'title': 'Lost/Found', 'lost':lost}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/lost.html', context)
 
@@ -209,7 +209,7 @@ def profile_view(request, id=None):
 	}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/profile_view.html', context)
 
@@ -262,7 +262,7 @@ def post_create(request):
 	context = {'form':form , 'title': 'New Post'}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/login.html', context)
 
@@ -276,7 +276,7 @@ def post_view(request, id=None):
 	}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/post_view.html', context)
 
@@ -291,7 +291,7 @@ def post_details(request):
 	}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/post_details.html', context)
 
@@ -317,7 +317,7 @@ def post_update(request,id=None):
 		}
 		litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 		fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-		context['litem']=litem 
+		context['litem']=litem
 		context['fitem']=fitem
 		return render(request, 'login/login.html', context)
 		# return render(request, 'login/login.html', context)
@@ -363,7 +363,7 @@ def question_create(request):
 	context = {'form':form , 'title': 'Ask'}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/login.html', context)
 
@@ -377,7 +377,7 @@ def question_view(request, id=None):
 	}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/question_view.html', context)
 
@@ -402,7 +402,7 @@ def question_update(request,id=None):
 		}
 		litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 		fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-		context['litem']=litem 
+		context['litem']=litem
 		context['fitem']=fitem
 		return render(request, 'login/login.html', context)
 	else:
@@ -451,7 +451,7 @@ def answer_create(request, id=None):
 	context = {'form':form , 'title': 'Answer', 'quest': Question.objects.get(id=id)}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/answer.html', context)
 
@@ -465,7 +465,7 @@ def answer_view(request, id=None):
 	}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/answer_view.html', context)
 
@@ -487,7 +487,7 @@ def answer_update(request,id=None):
 		}
 		litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 		fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-		context['litem']=litem 
+		context['litem']=litem
 		context['fitem']=fitem
 		return render(request, 'login/answer.html', context)
 	else:
@@ -540,7 +540,7 @@ class person_info(UpdateView):
 
 
 # def register_view(request):
-# 	if request.user.is_authenticated(): 
+# 	if request.user.is_authenticated():
 # 		return redirect("/")
 # 	form = UserRegisterForm(request.POST or None)
 # 	nex = request.GET.get('next')
@@ -581,7 +581,7 @@ def person_view(request):
 	context = {'form':form , 'title': 'Edit Profile'}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/user_form.html', context)
 
@@ -610,11 +610,11 @@ def index(request):
 	context = {
 			'feed':feed,
 			'user':user,
-			'title': 'Latest Feed'
+			'title': ' How To ?'
 	}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp')
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp')
-	context['litem']=litem 
+	context['litem']=litem
 	context['fitem']=fitem
 	return render(request, 'login/feed.html', context)
 
@@ -888,7 +888,7 @@ class CommentUpdateView(AjaxableResponseMixin, UpdateView):
 # 		username = form.cleaned_data['username']
 # 		password = form.cleaned_data['password']
 # 		user.set_password(password)
-# 		user.save()   
+# 		user.save()
 
 # 		user = authenticate(username=username, password=password)
 
