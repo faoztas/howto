@@ -31,6 +31,7 @@ class Comment(models.Model):
 
 class Topic(models.Model):
 	name = models.CharField(max_length = 30)
+
 	def __str__(self):
 		return str(self.name)
 
@@ -78,7 +79,6 @@ class Post(models.Model):
 	author = models.ForeignKey(User, on_delete = models.CASCADE )
 	title = models.CharField(max_length= 120)
 	content = DraceditorField()
-	#content = models.TextField()
 	comments = GenericRelation(Comment)
 	timestamp = models.DateTimeField(auto_now = False, auto_now_add = True)
 	upvotes = models.ManyToManyField('Person', related_name='upvoted_post')
@@ -97,6 +97,7 @@ class Question(models.Model):
 	comments = GenericRelation(Comment)
 	timestamp = models.DateTimeField(auto_now = False, auto_now_add = True)
 	topic_follows = models.ManyToManyField('Topic', related_name = 'question_followers', blank = True)
+
 	def __str__(self):
 		return self.question
 
@@ -110,6 +111,7 @@ class Answer(models.Model):
 	comments = GenericRelation(Comment)
 	timestamp = models.DateTimeField(auto_now = False, auto_now_add = True)
 	upvotes = models.ManyToManyField('Person', related_name='upvoted_answer')
+    
 	def __str__(self):
 		return self.author.username
 

@@ -30,10 +30,9 @@ def get_all_answers(object, user):
 		'size': size,}
 
 register.inclusion_tag('post/all_answers.html')(get_all_answers)
-	
+
 
 def get_answer(object, user):
-	# print(object)
 	upvotes = object.upvotes.all().count()
 	return {
             'answer': object,
@@ -48,7 +47,6 @@ def all_things_question(object, user):
 	if object.answers.filter(author=user):
 		myanswer = object.answers.get(author=user)
 		answered = True
-	# print(myanswer.id)
 	return {
             'quest': object,
 		'user': user,
@@ -64,7 +62,6 @@ def question_feed(object, user):
 	if object.answers.filter(author=user):
 		myanswer = object.answers.get(author=user)
 		answered = True
-	# print(myanswer.id)
 	return {
             'quest': object,
 		'user': user,
@@ -75,7 +72,6 @@ register.inclusion_tag('post/question_feed.html')(question_feed)
 
 
 def get_user_popup(object, user):
-    # print("our user "+user.username)
     return {
             "user": user,
             'objuser': object,}
@@ -84,21 +80,8 @@ register.inclusion_tag('post/mini_profile.html')(get_user_popup)
 
 
 def get_user_tag(object, user):
-    # print("our user "+user.username)
     return {
             "user": user,
             'objuser': object,}
 
 register.inclusion_tag('post/profile_tag.html')(get_user_tag)
-
-
-
-	
-
-# def all_about_rubbish(object, user):
-# 	return return {
-#             'quest': object,
-# 		'user': user,}
-
-# register.inclusion_tag('post/question.html')(all_things_question)
-# 	

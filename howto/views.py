@@ -12,5 +12,4 @@ def main(request):
 
 
 def index(request):
-	#notify.send(request.user, recipient=request.user, verb=u'logged in', action_object=request.user, target=request.user)
 	return render(request, 'login/index.html')

@@ -61,9 +61,6 @@ def get_if_user(request):
 
 
 def general_info(request):
-	if request.method == 'POST':
-		print(request.POST.get('remove'))
-		print(request.FILES.get('profile-pic'))
 	context = {'title': 'Edit Profile'}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
@@ -75,7 +72,6 @@ def general_info(request):
 def video_chat_view(request):
 	u = request.POST.get('user_id')
 	user = User.objects.get(id = u)
-	print(user.username)
 	context = {
 		'title':'Varta- The Video Chat',
 	}
@@ -84,7 +80,6 @@ def video_chat_view(request):
 	else:
 		html = "<h2>You are unauthorised!! Please, Sign up!!</h2>"
 	context['html'] = html
-	print(html)
 	return HttpResponse(json.dumps(context), content_type = 'application/json')
 
 # Create your views here.
@@ -283,7 +278,6 @@ def post_view(request, id=None):
 @login_required(login_url='/login/')
 def post_details(request):
 	queryset = Post.objects.all().order_by('-timestamp')
-	#queryset = request.user.post_set.all()
 	context = {
 	'post':queryset,
 	'user':request.user,
@@ -320,7 +314,6 @@ def post_update(request,id=None):
 		context['litem']=litem
 		context['fitem']=fitem
 		return render(request, 'login/login.html', context)
-		# return render(request, 'login/login.html', context)
 	else:
 		raise Http404("Something went wrong!!")
 
@@ -352,7 +345,6 @@ def question_create(request):
 	if form.is_valid():
 		instance = form.save(commit=False)
 		instance.author = request.user
-		# print(instance.question)
 		instance.save()
 		for idm in request.POST.getlist('topic_follows'):
 			instance.topic_follows.add(Topic.objects.get(id= idm))
@@ -443,7 +435,6 @@ def answer_create(request, id=None):
 		instance = form.save(commit=False)
 		instance.author = request.user
 		instance.question = quest
-		# print(instance.question)
 		instance.save()
 		if nex:
 			return redirect(nex)
@@ -517,45 +508,11 @@ def login_view(request):
 		return redirect('/')
 	return redirect('/accounts/login/')
 
-# def login_view(request):
-# 	if request.user.is_authenticated():
-# 		return redirect("/")
-# 	nex = request.GET.get('next')
-# 	form = UserForm(request.POST or None)
-# 	if form.is_valid():
-# 		username = form.cleaned_data.get("username")
-# 		password = form.cleaned_data.get("password")
-# 		user= authenticate(username=username, password=password)
-# 		login(request, user)
-# 		print(request.user.is_authenticated())
-# 		if nex:
-# 			return redirect(nex)
-# 		return redirect("/")
-
-# 	return render(request, 'login/login.html', {'form':form, 'title': 'Log In'})
 
 class person_info(UpdateView):
 	model = Person
 	fields = ['gender', 'display_pic', 'about_me', 'cv']
 
-
-# def register_view(request):
-# 	if request.user.is_authenticated():
-# 		return redirect("/")
-# 	form = UserRegisterForm(request.POST or None)
-# 	nex = request.GET.get('next')
-# 	if form.is_valid():
-# 		user = form.save(commit=False)
-# 		password = form.cleaned_data.get('password')
-# 		user.set_password(password)
-# 		user.save()
-# 		new_user= authenticate(username=user.username, password=password)
-# 		login(request, new_user)
-# 		if nex:
-# 			return redirect(nex)
-# 		return redirect("/")
-# 	context = {'form':form, 'title': 'Sign Up'}
-# 	return render(request, 'login/login.html', context)
 
 
 @login_required(login_url='/login/')
@@ -642,7 +599,6 @@ class TopicAutocomplete(autocomplete.Select2QuerySetView):
 	def create_topic(self):
 		topic = Topic.objects.create(name = self.q)
 		topic.save()
-		print("2")
 		return topic.pk
 
 	def get_queryset(self):
@@ -650,7 +606,6 @@ class TopicAutocomplete(autocomplete.Select2QuerySetView):
 		if not self.request.user.is_authenticated():
 			return Topic.objects.none()
 		qs = Topic.objects.all()
-		print("1")
 		if self.q:
 			qs = qs.filter(name__istartswith=self.q)
 		return qs
@@ -871,31 +826,3 @@ class CommentUpdateView(AjaxableResponseMixin, UpdateView):
                 return super(CommentUpdateView, self).form_valid(form)
             else:
                 return HttpResponse('not authenticated')
-
-
-
-# class UserFormView(View):
-# 	form_class = UserForm
-# 	template_name = 'login/register.html'
-
-# 	def get(self, request):
-# 		form = self.form_class(None)
-# 		return render(request, self.template_name, {'form': form})
-
-# 	def post(self, request):
-# 		form = self.form.save(commit=False)
-
-# 		username = form.cleaned_data['username']
-# 		password = form.cleaned_data['password']
-# 		user.set_password(password)
-# 		user.save()
-
-# 		user = authenticate(username=username, password=password)
-
-# 		if user is not None:
-
-# 			if user.is_active:
-# 				login(request, user)
-# 				return redirect('home:/')
-
-# 		return render(request, self.template_name, {'form': form})

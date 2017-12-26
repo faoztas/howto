@@ -46,12 +46,9 @@ class PersonForm(forms.ModelForm):
         fields = [ 'gender', 'about_me']
 
 class PostForm(forms.ModelForm):
-    #publish =  forms.DateField(widget = forms.SelectDateWidget)
     content = DraceditorFormField()
     title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Heading for the Post...'}))
     topic_follows = models.ManyToManyField('login.topic')
-    #content = forms.CharField(widget = PagedownWidget)
-    #content = MarkdownxFormField(widget = PagedownWidget)
     class Meta:
         model = Post
         fields = [ 'title', 'topic_follows' , 'content']
@@ -66,18 +63,10 @@ class QuestionForm(forms.ModelForm):
         widgets = {'topic_follows': autocomplete.ModelSelect2Multiple(url='topic-autocomplete')}
 
 class UserRegisterForm(forms.ModelForm):
-    # password = forms.CharField(widget=forms.PasswordInput)
-    # password2 = forms.CharField(widget=forms.PasswordInput, label='Confirm password')
+
     class Meta:
         model=User
         fields = ['username','email', 'first_name', 'last_name']
-
-    # def clean_password2(self):
-    #     password= self.cleaned_data.get('password')
-    #     password2= self.cleaned_data.get('password2')
-    #     if password != password2:
-    #         raise forms.ValidationError("Passwords Don't Match")
-    #     return password
 
     def clean_email(self):
         email= self.cleaned_data.get('email')
@@ -100,7 +89,7 @@ class UserRegisterForm(forms.ModelForm):
         return first_name
 
     def signup(self, request, user):
-        if request.user.is_authenticated(): 
+        if request.user.is_authenticated():
             return redirect("/")
         form = UserRegisterForm(request.POST or None)
         nex = request.GET.get('next')
@@ -119,7 +108,7 @@ class UserRegisterForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     comment = forms.CharField(
-        label='comment', 
+        label='comment',
         widget=forms.Textarea(
             attrs={'rows':'1','cols':'70','placeholder': 'Write a Comment...', 'class':'comment-form-class'}
         )

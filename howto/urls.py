@@ -24,10 +24,11 @@ urlpatterns = [
 	url(r'^settings/general/', general_info, name="general_info" ),
 	#all auth urls
 	url(r'^accounts/', include('allauth.urls')),
-	# #social auth
-	# url(r'^oauth/', include('social_django.urls', namespace='social')),
 	#Topic Autocomplete
-	url(r'^topic-autocomplete/$', TopicAutocomplete.as_view(model = Topic, create_field=''), name='topic-autocomplete'),
+	url(r'^topic-autocomplete/$',
+		TopicAutocomplete.as_view(model = Topic, create_field=''),
+		name='topic-autocomplete'
+	),
 	#login
 	url(r'^login/', login_view, name='login'),
 	#report lost and found
@@ -88,8 +89,6 @@ urlpatterns = [
 	url(r'^search/user/profiles/', profile_search, name='profile_search'),
 	#view individuals profile
 	url(r'^view/profile/(?P<id>\d+)/$', profile_view, name='profile_view'),
-	# #sing up or register
-	# url(r'^register/', register_view, name='register'),
 	#admin/
     url(r'^admin/', admin.site.urls),
 ]

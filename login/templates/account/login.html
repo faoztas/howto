@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<div class="ui centered header"><h1>{% trans "Giriş Yap" %}</h1></div>
+<div class="ui centered header"><h1>{% trans "Giriş" %}</h1></div>
 <div class="ui divider"></div>
 <div class="ui grid">
     <div class="three wide column"></div>
@@ -13,9 +13,9 @@
       {% get_providers as socialaccount_providers %}
       <br><br>
       {% if socialaccount_providers %}
-        <p>{% blocktrans with site.name as site_name %}Zaten bir sosyal paylaşım sitesi kullanıyor musun? 
-          O zaman onlardan biri ile giriş yap. 
-          Veya bir howto hesabına 
+        <p>{% blocktrans with site.name as site_name %}Zaten bir sosyal paylaşım sitesi kullanıyor musun?
+          O zaman onlardan biri ile giriş yap.
+          Veya bir howto hesabına
           <a href="{{ signup_url }}">Kayıt Ol!</a>
           {% endblocktrans %}</p>
 
@@ -28,7 +28,7 @@
       {% include "socialaccount/snippets/login_extra.html" %}
 
       {% else %}
-        <p>{% blocktrans %}Henüz bir hesap oluşturmadıysanız, lütfen önce 
+        <p>{% blocktrans %}Henüz bir hesap oluşturmadıysanız, lütfen önce
         <a href="{{ signup_url }}">Kayıt Ol!</a> first.{% endblocktrans %}</p>
       {% endif %}
     </div>
@@ -44,7 +44,7 @@
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       <button id="submit-button" class="ui disabled fluid large teal submit button primaryAction" type="submit">{% trans "Giriş Yap" %}</button>
-      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Şifremi Unuttum!" %}</a> 
+      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Şifremi Unuttum!" %}</a>
     </form>
     </div>
 </div>
@@ -53,7 +53,7 @@
   $(document).ready(function(){
     var bool = false;
   });
-  
+
   $("#id_login").focusin(function(){
         bool = true;
     });
@@ -88,8 +88,8 @@
                         element.removeClass('error');
                         element.removeClass('correct');
                       },
-          
-          
+
+
                     });
           }
         }
