@@ -307,6 +307,7 @@
           </div>
         </div>
       </div>
+      
 
       <div class="right menu">
         <a class="teal item" id='varta_chat' href="#" >
@@ -347,16 +348,6 @@
       <div class="ui vertical menu" id="sidemenu" style="margin-left: 1.7%; position: fixed;">
         <div class="ui fluid card">
           <div class=" item">
-            <!-- <div class="ui input"><form class="search-form" role="search">
-                <div class="ui loading search">
-                    <div style="width:30vh">
-                        {% csrf_token %}
-                        <input type="text" class="form-control" id="profile-search" name="search" placeholder="Find Friends...." list="profile-results">
-                        <div class="results" id="profile-results" >
-                        </div>
-                    </div>
-                </div>
-            </form></div> -->
             <div class="ui fluid search" id="profile-search-div">
               <div class="ui transparent icon input" style="width: 100%;">
                 {% csrf_token %}
@@ -386,7 +377,7 @@
             </a>
 
             <div class="meta">
-              <span class="date">{{ user.date_joined }}Tarihinde Katıldı</span>
+              <span class="date">{{ user.date_joined }}Date Attended</span>
             </div>
 
 
@@ -409,16 +400,16 @@
         </div>
         <div class="ui segment grid">
           <div class="sixteen wide column">
-            <div class="ui vertical divider">veya</div>
+            <div class="ui vertical divider">or</div>
             <div class="ui grid">
               <div class="eight wide stretched column" >
                 <a class="headbut" href="{% url 'create_question' %}">
-                  <h2 style="text-align: center;">Sorun mu var?</h2>
+                  <h2 style="text-align: center;">Is there a problem?</h2>
                 </a>
               </div>
               <div class="eight wide stretched column">
                 <a class="headbut" href="{% url 'create_post' %}">
-                  <h2 style="text-align: center;">Bir yazı oluştur!</h2>
+                  <h2 style="text-align: center;">Create a post!</h2>
                 </a>
               </div>
             </div>
@@ -431,14 +422,6 @@
       <div class="ui modal" style="padding: 0px;">
         <i class="close icon"></i>
       </div>
-        <!-- <div class="ui top attached segment">
-           don't act like its a bad thing to fall in love with me......
-        </div>
-        <div class="ui transparent bottom attached icon input segment">
-          <i class="edit icon"></i>
-          <input type="text" name="">
-        </div> -->
-
 {% endif %}
 
       {% block bass %}
@@ -450,72 +433,7 @@
       <div id="context">
 
       </div>
-    </div>
-
-
-
-    <!--<div class="three wide column" style="">
-
-      <a class = "ui top attached button" style="background-color: #F44336;color: white;" href="{% url 'report' %}">Report Item Lost/Found</a>
-
-      <div id="style-1" style="max-height:280px;overflow-y: scroll;">
-
-        <table class="ui selectable single line compact fixed table">
-          <thead>
-          <tr class = "ui yellow top attched segment""><th colspan="2" ><center><b> LOST</b></center> </th></tr>
-            <tr>
-              <th style="background-color: #F5F5DC;padding: 7px;" colspan="2">Reported by</th>
-              <th style="background-color: #F5F5DC;padding: 7px;" colspan="1"><b>LOST</b></th>
-            </tr>
-          </thead>
-
-          <tbody>
-          {% load post_tags %}
-          {% for item in litem %}
-            <tr>
-              <td colspan="2">{% get_user_tag item.reported_by user %}</td>
-              <td colspan="1" href="{% url 'lost_view' item.id %}"><a style="color: #111" href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
-      </div>
-
-      <div id="style-1" style="max-height:280px;overflow-y: scroll; margin-top: 5px;">
-
-        <table class="ui selectable single line compact fixed table" >
-          <thead>
-          <tr class = "ui inverted yellow top attched segment""><th colspan="2"><center><b> FOUND</b></center> </th></tr>
-            <tr>
-              <th style="background-color: #F5F5DC;padding: 7px;" colspan="2">Reported by</th>
-              <th style="background-color: #F5F5DC;padding: 7px;" colspan="1"><b>FOUND</b></th>
-            </tr>
-          </thead>
-
-          <tbody>
-          {% for item in fitem %}
-            <tr>
-              <td colspan="2">{% get_user_tag item.reported_by user %}</td>
-              <td colspan="1" href="{% url 'lost_view' item.id %}"><a style="color: #111" href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="three wide column">
-      <div class="ui rail" style="">
-        <div class="ui sticky" style="background-color: white; height:100%; top: 7%; z-index: 0;">
-          <div class="ui dividing container">
-            <h4 class="ui centered header">Chat division</h4>
-            <div class="ui container">
-              YO
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
+    </div
 
   </div>
 </div>
@@ -546,42 +464,6 @@ $('.ui.modal')
   })
 ;
     </script>
-
-<!-- <script type="text/javascript">
-    $('.post-edit').click(function(event){
-        var element = $(this);
-        $('.ui.modal').modal('show');
-        $.ajax({
-               type: "POST",
-               url: "/post/update/"+element.attr('data')+"/",
-               data: { 'post_id': element.attr('data'),'csrfmiddlewaretoken': '{{ csrf_token }}'},
-               dataType: "json",
-               success: function(response) {
-                      if(response['data'])
-                      {
-                      $('.ui.modal').html(response['html']);
-                      console.log($('.ui.modal').html());
-                      // console.log('follow-'+element.attr('data'));
-                      // document.getElementById('follow-'+element.attr('data')).style.color = 'red';
-
-                        }
-                        else
-                        {
-                            $('.ui.modal').html("<h3>Something went wrong</h3>");
-                            // console.log('follow-'+element.attr('data'));
-                            // document.getElementById('follow-'+element.attr('data')).style.color = 'black';
-
-                        }
-
-                },
-                error: function(rs, e) {
-                       $('.ui.modal').html("<h3>Request couldn't be parsed</h3>");
-                },
-            });
-    });
-</script> -->
-
-
     <script type="text/javascript">
       $(function(){
         $('#profile-search').keyup(function(){
@@ -610,7 +492,6 @@ $('.ui.modal')
               document.getElementById('profile-search-div').classList.add('loading');
             },
 
-
           })
 
         })
@@ -631,16 +512,11 @@ $('.profiles').click(function(){
                       if(response.message == "followed")
                       {
                       element.html("<div class='ui purple labeled icon button'><i class='user icon'></i>unfollow</div>");
-                      // console.log('follow-'+element.attr('data'));
-                      // document.getElementById('follow-'+element.attr('data')).style.color = 'red';
 
                         }
                         else
                         {
                             element.html("<div class='ui basic purple labeled icon button'><i class='add user icon'></i>follow</div>");
-                            // console.log('follow-'+element.attr('data'));
-                            // document.getElementById('follow-'+element.attr('data')).style.color = 'black';
-
                         }
 
                 },
@@ -719,16 +595,6 @@ $('#style-1').hover(function(){
   $(this).style.overflow-y = 'hidden';
 });
 
-// $('.ui.transparent.icon.input')
-//   .click(function(){
-//     //$('.body').dimmer('show');
-//     //$('.ui.black.fluid.card').dimmer('show');
-//     $('.ui.search').dimmer("add content('.ui.search')");
-
-//   })
-// ;
-
-
 
     $('.dropdown')
   .dropdown({
@@ -764,7 +630,7 @@ $('#style-1').hover(function(){
                       $('.ui.modal').modal('show');
                 },
                 error: function(rs, e) {
-                       alert("Something went wrong!")//rs.responseText);
+                       alert("Something went wrong!")
                 }
           });
   },);
@@ -772,26 +638,7 @@ $('#style-1').hover(function(){
 
 
 <script type="text/javascript">
-  // $('.headbut').click(function(event){
-  //   event.preventDefault();
-  //   var element = $(this);
-  //   $.ajax({
-  //           type: "GET",
-  //           url: element.attr('href'),
-  //           data: {},
-  //           success: function(response){
-  //               $('.ui.modal').html("<i class='close icon'></i>"+response);
-  //               $('.ui.modal').modal('show');
-  //           },
-  //           error: function(response, error){
-  //               alert("Response:"+response+"\nError:"+error);
-  //           }
-  //   },);
-  // });
-</script>
-
-
-<!-- for code and pre highlight -->
+  
 <script>hljs.initHighlightingOnLoad();</script>
 
 
@@ -971,9 +818,6 @@ $(document).ready(function() {
                     html = "<div id='comment-div-" + json['id'] + "' style='display:none;'>" +json['html'] +"</div>"
                   $('.comments-'+json['oid']).append(html);
                   $('#comment-div-' + json['id']).slideToggle();
-                  // console.log('comments-'+json['oid']);
-                  // var app = document.getElementById('comments-'+json['oid']);
-                  // app.innerHTML=html;
                   $('textarea#id_comment').val("");
                     $('#no-comments').hide()
                 }

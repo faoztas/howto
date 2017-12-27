@@ -1,4 +1,4 @@
-from .models import Person, Post, Comment, Like, Item, Topic
+from .models import Person, Post, Comment, Like, Item, Topic, Question
 from django.contrib.auth.models import User
 from django.middleware.csrf import get_token
 from django.contrib.contenttypes.models import ContentType
@@ -218,17 +218,6 @@ def profile_search(request):
 			return JsonResponse(data)
 		profiles = User.objects.filter(~Q(username=request.user.username)) # select * from User where username <> request.user.username;
 		profiles = profiles.filter(Q(username__contains = search_q) | Q(email__contains = search_q) | Q(first_name__contains = search_q))
-		# profiles = list(profiles)
-		# for i in User.objects.all():
-		# 	for j in search_q.split():
-		# 		if i.first_name in j:
-		# 			profiles = profiles + list(i)
-		# 		if i.last_name in j:
-		# 			profiles = profiles + list(i)
-		# 		if j in i.first_name:
-		# 			profiles = profiles + list(i)
-		# 		if j in i.last_name:
-		# 			profiles = profiles + list(i)
 		profiles = set(profiles)
 		count = len(profiles)
 		html = render_to_string("login/profile_search.html", {'profiles': profiles, 'count': count })
@@ -237,6 +226,7 @@ def profile_search(request):
 			'html':html,
 		}
 		return JsonResponse(data)
+
 
 @login_required(login_url='/login/')
 def post_create(request):
@@ -594,6 +584,10 @@ def auth(request):
 	user.active=True
 	return render(request, 'login/head.html', {'ppl': user})
 
+def search(request):
+    words = request.GET['inputAra']
+    results = Question.objects.filter(Q(question__icontains=words) | Q(topic_follows__name__icontains=words))
+    return render(request, "login/search.html", locals())
 
 class TopicAutocomplete(autocomplete.Select2QuerySetView):
 	def create_topic(self):
@@ -826,3 +820,4 @@ class CommentUpdateView(AjaxableResponseMixin, UpdateView):
                 return super(CommentUpdateView, self).form_valid(form)
             else:
                 return HttpResponse('not authenticated')
+

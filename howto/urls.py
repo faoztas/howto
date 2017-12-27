@@ -91,6 +91,7 @@ urlpatterns = [
 	url(r'^view/profile/(?P<id>\d+)/$', profile_view, name='profile_view'),
 	#admin/
     url(r'^admin/', admin.site.urls),
+	url(r'^', search, name="search"),
 ]
 
 
