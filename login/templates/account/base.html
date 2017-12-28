@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
 	<head>
+			<link rel="shortcut icon" type="image/png" href="/static/img/howto_icon.png/">
 		<title>
-			howto - Hoşgeldiniz
+			Welcome to howto?
 		</title>
 		<link rel="stylesheet" href={% static 'sem/semantic.min.css' %} >
     <link href="{% static 'sem/open-sans.css' %}" rel="stylesheet">
@@ -61,17 +62,22 @@
         	padding: 0.7em;
         	padding-left: 2em;
         }
+				body{
+					background-image: url(/static/img/howtoback.jpg);
+					background-repeat:no-repeat;
+					background-size:contain;
+				}
     </style>
 	</head>
 	<body>
 	{%  load static %}
-	<div style="color:#00b; margin-top:20px; margin-left:0px; font-weight:bolder ; font-size:50px; font-family:Arial">
+	<div style="margin-top:30px; margin-left:0px; font-weight:bolder ; font-size:50px; font-family:Arial">
 		<!-- <center> -->
-		<center style="z-index: 100; background-color: white; padding: 0px;"><a href="/"><link href="https://fonts.googleapis.com/css?family=Raleway:300i" rel="stylesheet"><div style="font-family: 'Raleway', sans-serif;font-size: 68px; color:rgb(54, 54, 54);margin-left:10px; font-weight:normal;">howto?</div><br> <sub style="font-size:12px; color:#FF3B30;background-color: white; "> Bir şey biliyorsam o da hiç bir şey bilmediğimdir. </sub></a></center>
+		<center style="z-index: 100; padding: 0px;"><a href="/"><link href="https://fonts.googleapis.com/css?family=Raleway:400i" rel="stylesheet"><div style="font-family: 'Raleway', sans-serif;font-size: 80px; color:rgb(54, 54, 54);margin-left:50px; font-weight:normal;">howto?</div><br> <sub style="font-size:16px; color:#3E606F; margin-left:30px;">I know that I know nothing!</sub></a></center>
 		<!-- </center> -->
 	</div>
 
-	<div class="ui top attached segment" style="margin-top:30px;">
+	<div class="ui top attached segment" style="margin-left:200px; margin-right:100px;margin-top:30px; width:70rem;border-radius:25px;">
 	{% block bass %}
 	{% endblock %}
 	</div>

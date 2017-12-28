@@ -7,7 +7,7 @@
 	<div class='myanswer-{{ answer.id }}'>
 		<div class="ui segments"  id = 'answer-contents-{{ answer.id }}'> 
 			<div class="ui segment" style="padding: 0px;">
-				<div class="metadata">
+				<div class="metadata" style="background-color:3E606F">
 	    			{% get_user_popup answer.author user %}&emsp;<i class="history icon"></i>{{ answer.timestamp | timesince}}&emsp;
 	    			<a href = "{% url 'view_answer' answer.id %}">view full answer</a>
 	    			<div class="ui right floated dropdown icon button" style="background-color: rgba(0,0,0,0); margin-right: 10px; margin-top: 4px;color: black;">
@@ -28,16 +28,16 @@
 			<div class="ui segment">
 				<h5 class="content-markdown" id="answer-{{ answer.id }}">{{ answer.content | safe_markdown }}</h5><br>
 			</div>
-			<div class="ui segment" style="background-color:#F5F5DC;">
+			<div class="ui segment" style="background-color:#D1DBBD;">
 			{% if answer in user.person.upvoted_answer.all %}
-				<a class="answer" id="{{ answer.id }}" style="cursor: pointer;" data = "{{ answer.id }}" value = "vote"  ">
+				<a class="answer" id="{{ answer.id }}" style="cursor: pointer;" data = "{{ answer.id }}" value = "vote  ">
 				    <i class="large blue chevron up icon" style="font-size: 2.7em;"></i>
 				  	<div class="ui small basic blue left pointing label">
 				    	{{ upvotes }}
 				  	</div>
 			  	</a>
 			{% else %}
-				<a class="answer" id="{{ answer.id }}" style="cursor: pointer;" data = "{{ answer.id }}" value = "vote"  ">
+				<a class="answer" id="{{ answer.id }}" style="cursor: pointer;" data = "{{ answer.id }}" value = "vote  ">
 				    <i class="large blue chevron up icon" style="font-size: 2.7em;"></i>
 				  	<div class="ui small basic grey left pointing label">
 				    	{{ upvotes }}
@@ -55,7 +55,7 @@
 	<div class='myanswer'>
 		<div class="ui segments" id = 'answer-contents-{{ answer.id }}'>
 			<div class="ui segment" style="padding: 0px;">
-				<div class="metadata">
+				<div class="metadata" style="background-color:#D1DBBD">
 					{% get_user_popup answer.author user %}&emsp;<i class="history icon"></i>{{ answer.timestamp | timesince}}&emsp;
 					<a href = "{% url 'view_answer' answer.id %}">view full answer</a>
 				</div>
@@ -63,16 +63,16 @@
 			<div class="ui segment">
 				<h5 class="content-markdown" id="answer-{{ answer.id }}">{{ answer.content| safe_markdown }}</h5>
 			</div>
-			<div class="ui segment" style="background-color:#F5F5DC;">
+			<div class="ui segment" style="background-color:#D1DBBD;">
 	 			{% if answer in user.person.upvoted_answer.all %}
-				<a class="answer" id="{{ answer.id }}" style="cursor: pointer;" data = "{{ answer.id }}" value = "vote"  ">
+				<a class="answer" id="{{ answer.id }}" style="cursor: pointer;" data = "{{ answer.id }}" value = "vote  ">
 				    <i class="large blue chevron up icon" style="font-size: 2.7em;"></i>
 				  	<div class="ui small basic blue left pointing label">
 				    	{{ upvotes }}
 				  	</div>
 			  	</a>
 				{% else %}
-				<a class="answer" id="{{ answer.id }}" style="cursor: pointer;" data = "{{ answer.id }}" value = "vote"  ">
+				<a class="answer" id="{{ answer.id }}" style="cursor: pointer;" data = "{{ answer.id }}" value = "vote  ">
 				    <i class="large blue chevron up icon" style="font-size: 2.7em;"></i>
 				  	<div class="ui small basic grey left pointing label">
 				    	{{ upvotes }}
