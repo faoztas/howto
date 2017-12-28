@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="ui centered header"><h1>{% trans "Sign Up" %}</h1>
-	<p style="font-weight: 400;font-size: 0.8em;">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+	<p style="color:#3E606F;font-size: 16px;">{% blocktrans %}Already have an account? Then please <a style="color:#193441;font-weight: bold;"href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 </div>
 <div class="ui divider"></div>
 <div class="ui grid">
@@ -21,7 +21,7 @@
 				  {% if redirect_field_value %}
 				  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
 				  {% endif %}
-				  <button type="submit" class="ui fluid large teal submit button">{% trans "Sign Up" %} &raquo;</button>
+				  <button type="submit" class="ui fluid large teal submit button" style="background-color:#193441;">{% trans "Sign Up" %} &raquo;</button>
 				</form>
 			</div>
 		</div>
