@@ -7,7 +7,7 @@
 		<div class="ui segments" id = 'post-contents-{{ post.id }}'> 
 
 			{% if post.topic_follows.all.count > 0 %}	
-			<div class="ui segment" style="padding: 3px;background-color: #F5F5DC;">
+			<div class="ui segment" style="padding: 3px;background-color: #D1DBBD;">
 				{% for topic in post.topic_follows.all %}
 					<a class="ui small tag label mylabel">{{ topic }}</a>
 				{% endfor %}
@@ -15,7 +15,7 @@
 			{% endif %}
 
 			<div class="ui segment" style="padding: 0px;">
-				<div class="metadata" style="background-color:#D1DBBD;">
+				<div class="metadata" style="background-color:#FCFFF5;">
 	    			{% get_user_popup post.author user %}&emsp;<i class="history icon"></i>{{ post.timestamp | timesince}}
 
 	    			<div class="ui right floated dropdown icon button" style="background-color: rgba(0,0,0,0);display: block;">
@@ -80,7 +80,7 @@
 			</div>
 			{% endif %}
 			<div class="ui segment" style="padding: 0px;">
-				<div class="metadata" style="background-color:#D1DBBD;">
+				<div class="metadata" style="background-color:#FCFFF5;">
 					{% get_user_popup post.author user %}&emsp;<i class="history icon"></i>{{ post.timestamp | timesince}}
 				</div>
 			</div>

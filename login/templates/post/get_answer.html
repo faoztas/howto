@@ -55,7 +55,7 @@
 	<div class='myanswer'>
 		<div class="ui segments" id = 'answer-contents-{{ answer.id }}'>
 			<div class="ui segment" style="padding: 0px;">
-				<div class="metadata" style="background-color:#D1DBBD">
+				<div class="metadata" style="background-color:#FCFFF5">
 					{% get_user_popup answer.author user %}&emsp;<i class="history icon"></i>{{ answer.timestamp | timesince}}&emsp;
 					<a href = "{% url 'view_answer' answer.id %}">view full answer</a>
 				</div>
