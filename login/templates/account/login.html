@@ -6,7 +6,7 @@
 {% block content %}
 
 
-<div class="ui centered header" ><h1>{% trans "Giriş" %}</h1></div>
+<div class="ui centered header" ><h1>{% trans "Sign In" %}</h1></div>
 <div class="ui divider"></div>
 <div class="ui grid">
     
@@ -14,11 +14,9 @@
       {% get_providers as socialaccount_providers %}
       <br><br>
       {% if socialaccount_providers %}
-        <p>{% blocktrans with site.name as site_name %}Do you using a social platform?
-          Than login with someone of them.
-          Or sign in HowTo
-          <a href="{{ signup_url }}">Kayıt Ol!</a>
-          {% endblocktrans %}</p>
+        <p style="color:#3E606F;font-size: 16px;">{% blocktrans with site.name as site_name %}Please sign in with one
+            of your existing third party accounts. Or, <a style="color:#193441;font-weight: bold;" href="{{ signup_url }}">sign up</a>
+            for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
         <div class="socialaccount_ballot">
           <ul class="socialaccount_providers">
@@ -29,8 +27,8 @@
       {% include "socialaccount/snippets/login_extra.html" %}
 
       {% else %}
-        <p>{% blocktrans %}Henüz bir hesap oluşturmadıysanız, lütfen önce
-        <a href="{{ signup_url }}">Kayıt Ol!</a> first.{% endblocktrans %}</p>
+        <p>{% blocktrans %}If you have not created an account yet, then please
+            <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
       {% endif %}
     </div>
     <div class="two wide column" style="margin-left:30px;"><div class="ui vertical divider">
@@ -44,8 +42,8 @@
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
-      <button id="submit-button" class="ui disabled fluid large teal submit button primaryAction" type="submit">{% trans "Giriş Yap" %}</button>
-      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Şifremi Unuttum!" %}</a>
+      <button id="submit-button" class="ui disabled fluid large teal submit button primaryAction" style="background-color:#193441;" type="submit">{% trans "Sign In" %}</button>
+      <a class="button secondaryAction" style="color:#193441;font-weight: bold;" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
     </form>
     </div>
 </div>

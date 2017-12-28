@@ -567,7 +567,7 @@ def index(request):
 	context = {
 			'feed':feed,
 			'user':user,
-			'title': ' How To ?'
+			'title': 'howto?'
 	}
 	litem = Item.objects.filter(lost= 'L').order_by('-timestamp')
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp')

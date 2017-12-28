@@ -294,7 +294,7 @@
           <i class="chevron down icon"></i>
           <div class="menu">
             <a href="/post/" class="item"><i class="edit icon" ></i> Post</a>
-            <a href="/" class="item"><i class="browser icon" ></i> feed</a>
+            <a href="/" class="item"><i class="browser icon" ></i> Question</a>
           </div>
         </div>
       </div>
@@ -331,9 +331,9 @@
         <div class="ui dropdown item" >
           <i class="setting icon"></i>
           <div class="menu">
-            <a class="item" href="{% url 'fillup' %}"><i class="edit icon" ></i> Profili Güncelle</a>
-            <a class="item" href="/accounts/password/change/"><i class="settings icon" ></i>Şifre Değiştir</a>
-            <a class="item" href="{% url 'logout' %}"><i class="power off icon" ></i>Çıkış Yap</a>
+            <a class="item" href="{% url 'fillup' %}"><i class="edit icon" ></i> Edit Profile</a>
+            <a class="item" href="/accounts/password/change/"><i class="settings icon" ></i> Change Password</a>
+            <a class="item" href="{% url 'logout' %}"><i class="power off icon" ></i> Logout</a>
           </div>
         </div>
       </div>
@@ -386,7 +386,7 @@
             </a>
 
             <div class="meta">
-              <span class="date">{{ user.date_joined }}Tarihinde Katıldı</span>
+              <span class="date">Joined on {{ user.date_joined }}</span>
             </div>
 
 
@@ -409,16 +409,16 @@
         </div>
         <div class="ui segment grid">
           <div class="sixteen wide column">
-            <div class="ui vertical divider">veya</div>
+            <div class="ui vertical divider">or</div>
             <div class="ui grid">
               <div class="eight wide stretched column" >
                 <a class="headbut" href="{% url 'create_question' %}">
-                  <h2 style="text-align: center;color: #193441;">Sorun mu var?</h2>
+                  <h2 style="text-align: center;color: #193441;">Have a Question ?</h2>
                 </a>
               </div>
               <div class="eight wide stretched column">
                 <a class="headbut" href="{% url 'create_post' %}">
-                  <h2 style="text-align: center;color: #193441;">Bir yazı oluştur!</h2>
+                  <h2 style="text-align: center;color: #193441;">Create a Post !</h2>
                 </a>
               </div>
             </div>
@@ -806,7 +806,7 @@ $('.post').click(function(){
                success: function(response) {
                       if(response.message == "Upvoted")
                       {
-                      element.html("<i class='large blue chevron up icon upnow' style='font-size: 2.7em;''></i><div class='ui small basic blue left pointing label'>"+response.upvotes+"</div>");
+                      element.html("<i class='large blue chevron up icon upnow' style='font-size: 2.7em;'></i><div class='ui small basic blue left pointing label'>"+response.upvotes+"</div>");
                       // document.getElementById(element.attr('data')).style.color = 'red';
                         }
                         else
