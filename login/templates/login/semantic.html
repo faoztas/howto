@@ -116,8 +116,8 @@
         #style-1::-webkit-scrollbar-thumb
         {
           border-radius: 10px;
-          -webkit-box-shadow: inset 0 0 6px #ba2e23;
-          background-color: #ba2e23;
+          -webkit-box-shadow: inset 0 0 6px #193441;
+          background-color: #193441;
         }
 
 
@@ -131,8 +131,8 @@
         code::-webkit-scrollbar-thumb
         {
           border-radius: 3px;
-          -webkit-box-shadow: inset 0 0 6px #ba2e23;
-          background-color: #ba2e23;
+          -webkit-box-shadow: inset 0 0 6px #193441;
+          background-color: #193441;
         }
 
         code{
@@ -143,7 +143,7 @@
 
         .mylabel{
           margin-top: 1px !important;
-          background-color: #F44336 !important;
+          background-color: #3E606F!important;
           opacity: 0.7 !important;
           color: white !important;
         }
@@ -153,14 +153,14 @@
         }
 
         blockquote {
-          background: #F5F5DC;
-          border-left: 10px solid #F44336;
+          background: #D1DBBD;
+          border-left: 10px solid #193441;
           margin: 1.5em 10px;
           padding: 0.5em 3em;
           quotes: "\201C""\201D""\2018""\2019";
         }
         blockquote:before {
-          color: #F44336;
+          color: #193441;
           content: open-quote;
           font-size: 4em;
           line-height: 0.1em;
@@ -169,7 +169,7 @@
         }
 
         blockquote:after {
-          color: #F44336;
+          color: #193441;
           content: close-quote;
           font-size: 4em;
           line-height: 0.1em;
@@ -182,10 +182,10 @@
         }
 
         .headbut{
-          color:#F44336;
+          color:#193441;
         }
         .headbut:hover{
-          color:#cf3327;
+          color:#3649f19c;
         }
 
 
@@ -284,10 +284,10 @@
     <!-- Site content !-->
   <div class="sixteen wide column">
 
-    <div class="ui inverted borderless fixed pointing menu" style="background-color: #F44336;opacity: 0.95;width: 100%;">
-      <div class="left menu">
+    <div class="ui inverted borderless fixed pointing menu" style="background-color: #193441;opacity: 0.95;width: 100%;margin:0px;">
+      <div class="left menu" style="margin-left:60px;">
         <a href="/" class="item" style="padding-top: 2px; padding-bottom: 2px; margin-top: 0px; margin-bottom: 0px;margin-right: 0px">
-          <link href="https://fonts.googleapis.com/css?family=Raleway:300i" rel="stylesheet"><div style="font-family: 'Raleway', sans-serif;font-size: 48px; color:white; font-weight:normal;">howto?</div>
+          <link href="https://fonts.googleapis.com/css?family=Raleway:400i" rel="stylesheet"><div style="font-family: 'Raleway', sans-serif;font-size: 48px; color:#FCFFF5; font-weight:normal;">howto?</div>
         </a>
 
         <div class="ui dropdown item" id="dropdown">
@@ -300,15 +300,15 @@
       </div>
 
       <div class="center menu" style="width: 35%;">
-        <div class="item" style="width: 100%; ">
-          <div class="ui fluid inverted transparent icon input">
+        <div class="item" style="width: 100%;padding:0px;">
+          <div class="ui fluid inverted transparent icon input" style="border:1rem;">
             <input type="text" placeholder="Ask anything..." style="width: 100%; ">
             <i class="inverted search link icon" ></i>
           </div>
         </div>
       </div>
 
-      <div class="right menu">
+      <div class="right menu" style="margin-right:60px;">
         <a class="teal item" id='varta_chat' href="#" >
           {% csrf_token %}
           <i class="record icon"></i><!-- Varta -->
@@ -324,7 +324,7 @@
           <!-- <a class="item">
                <div class="results"></div>
           </a> -->
-        <a class="item">
+        
           <a class="item" href=""><i class="send icon"></i>
         </a>
 
@@ -342,8 +342,8 @@
 
     <br><br>
 <br>
-  <div class="ui stackable grid">
-    <div class="three wide column">
+  <div class="ui stackable grid" style="background-color:#FCFFF5;">
+    <div class="three wide column" style="margin-left:50px;">
       <div class="ui vertical menu" id="sidemenu" style="margin-left: 1.7%; position: fixed;">
         <div class="ui fluid card">
           <div class=" item">
@@ -402,8 +402,8 @@
       </div>
     </div>
 
-    <div class="seven wide column" >
-      <div class="ui segments" style="border-left: 3px solid #F44336; border-right: 3px solid #F44336;">
+    <div class="seven wide column" style="margin-left:100px;" >
+      <div class="ui segments" style="border-left: 3px solid #193441; border-right: 3px solid #193441;">
         <div class="ui segment" style="padding: 0px; text-align: center;background-color: #F5F5DC;">
           
         </div>
@@ -413,12 +413,12 @@
             <div class="ui grid">
               <div class="eight wide stretched column" >
                 <a class="headbut" href="{% url 'create_question' %}">
-                  <h2 style="text-align: center;">Sorun mu var?</h2>
+                  <h2 style="text-align: center;color: #193441;">Sorun mu var?</h2>
                 </a>
               </div>
               <div class="eight wide stretched column">
                 <a class="headbut" href="{% url 'create_post' %}">
-                  <h2 style="text-align: center;">Bir yazı oluştur!</h2>
+                  <h2 style="text-align: center;color: #193441;">Bir yazı oluştur!</h2>
                 </a>
               </div>
             </div>
@@ -588,7 +588,7 @@ $('.ui.modal')
           document.getElementById('profile-search-div').classList.add('loading');
           $.ajax({
             type :'POST',
-            url :'{% url 'profile_search' %}',
+            url :'{% url "profile_search" %}',
             data : {
               'search_q':$('#profile-search').val(),
               'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
@@ -757,7 +757,7 @@ $('#style-1').hover(function(){
       $.ajax({
                type: "POST",
                url: "{% url 'varta_chat'%}",
-               data: {'user_id': {{request.user.id}},'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               data: {'user_id': {{ request_user_id }},'csrfmiddlewaretoken': '{{ csrf_token }}'},
                dataType: "json",
                success: function(response) {
                       $('.ui.modal').html("<i class='close icon'></i>"+response.html);

@@ -15,7 +15,7 @@
 			{% endif %}
 
 			<div class="ui segment" style="padding: 0px;">
-				<div class="metadata">
+				<div class="metadata" style="background-color:#D1DBBD;">
 	    			{% get_user_popup post.author user %}&emsp;<i class="history icon"></i>{{ post.timestamp | timesince}}
 
 	    			<div class="ui right floated dropdown icon button" style="background-color: rgba(0,0,0,0);display: block;">
@@ -39,10 +39,10 @@
 				<div class="ui divider"></div>
 				<h5 class="content-markdown" id="post-{{ post.id }}">{{ post.content | safe_markdown }}</h5><br>
 			</div>
-			<div class="ui segment" style="background-color:#F5F5DC;">
+			<div class="ui segment" style="background-color:#D1DBBD;">
 				{% if post in user.person.upvoted_post.all %}
 
-				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote"  ">
+				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote">
 				    <i class="large blue chevron up icon" style="font-size: 2.7em;"></i>
 				  	<div class="ui small basic blue left pointing label">
 				    	{{ upvotes }}
@@ -51,7 +51,7 @@
 
 				{% else %}
 
-				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote"  ">
+				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote  ">
 			   		<i class="large grey outline chevron up icon" style="font-size: 2.7em; "></i>
 			  		<div class="ui small basic grey left pointing label">
 			     		{{ upvotes }}
@@ -80,7 +80,7 @@
 			</div>
 			{% endif %}
 			<div class="ui segment" style="padding: 0px;">
-				<div class="metadata">
+				<div class="metadata" style="background-color:#D1DBBD;">
 					{% get_user_popup post.author user %}&emsp;<i class="history icon"></i>{{ post.timestamp | timesince}}
 				</div>
 			</div>
@@ -91,10 +91,10 @@
 				<h5 class="content-markdown" id="post-{{ post.id }}">{{ post.content| safe_markdown }}</h5>
 			</div>
 
-			<div class="ui segment" style="background-color: #F5F5DC;">
+			<div class="ui segment" style="background-color: #D1DBBD;">
 			    {% if post in user.person.upvoted_post.all %}
 
-				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote"  ">
+				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote  ">
 				    <i class="large blue chevron up icon" style="font-size: 2.7em;"></i>
 				  	<div class="ui small basic blue left pointing label">
 				    	{{ upvotes }}
@@ -103,7 +103,7 @@
 
 				{% else %}
 
-				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote"  ">
+				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote  ">
 			   		<i class="large grey outline chevron up icon" style="font-size: 2.7em;"></i>
 			  		<div class="ui small basic grey left pointing label">
 			     		{{ upvotes }}

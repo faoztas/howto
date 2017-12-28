@@ -5,17 +5,18 @@
 
 {% block content %}
 
-<div class="ui centered header"><h1>{% trans "Giriş" %}</h1></div>
+
+<div class="ui centered header" ><h1>{% trans "Giriş" %}</h1></div>
 <div class="ui divider"></div>
 <div class="ui grid">
-    <div class="three wide column"></div>
-    <div class="four wide column">
+    
+    <div class="four wide column" style="margin-left:150px;">
       {% get_providers as socialaccount_providers %}
       <br><br>
       {% if socialaccount_providers %}
-        <p>{% blocktrans with site.name as site_name %}Zaten bir sosyal paylaşım sitesi kullanıyor musun?
-          O zaman onlardan biri ile giriş yap.
-          Veya bir howto hesabına
+        <p>{% blocktrans with site.name as site_name %}Do you using a social platform?
+          Than login with someone of them.
+          Or sign in HowTo
           <a href="{{ signup_url }}">Kayıt Ol!</a>
           {% endblocktrans %}</p>
 
@@ -32,7 +33,7 @@
         <a href="{{ signup_url }}">Kayıt Ol!</a> first.{% endblocktrans %}</p>
       {% endif %}
     </div>
-    <div class="two wide column"><div class="ui vertical divider">
+    <div class="two wide column" style="margin-left:30px;"><div class="ui vertical divider">
         or
     </div></div>
     <div class="one wide column"></div>
@@ -48,6 +49,7 @@
     </form>
     </div>
 </div>
+
 
 <script type="text/javascript">
   $(document).ready(function(){

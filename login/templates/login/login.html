@@ -2,7 +2,7 @@
 {% block body %}
 <div class="ui segments">
 <!-- <i class="close icon"></i> -->
-  <div class="ui segment" style="background-color: #F5F5DC;">
+  <div class="ui segment" style="background-color: #D1DBBD;">
     <h2 class="ui centered header">{{ title }}</h2>
   </div>
   <div class="ui segment">
@@ -15,7 +15,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <div class="actions">
-          <button class="ui positive right floated labeled icon button" type="submit" name="submit">
+          <button class="ui positive right floated labeled icon button" style="background-color:#193441;" type="submit" name="submit">
             Submit
             <i class="checkmark icon"></i>
           </button>
